@@ -1,22 +1,14 @@
 package at.gruber.dev.y2022;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import at.gruber.dev.FileHelper;
+
+import java.util.List;
+import java.util.Locale;
 
 public class Day03 {
     public static void main(String[] args) {
 
-        List<String> lines = new ArrayList<>();
-        try {
-            Path path = Paths.get("D:\\Daten\\Dokumente\\IntellijProjects\\AdventOfCode\\src\\main\\resources\\2022\\day03_1.txt");
-            lines = Files.readAllLines(path);
-        } catch (IOException e) {
-            System.err.println(e.getLocalizedMessage());
-        }
-
+        List<String> lines = FileHelper.getFileContent(3);
 
         System.out.println("#### Part One:");
         int sum = 0;
@@ -39,7 +31,6 @@ public class Day03 {
         int sum2 = 0;
         int idx = 0;
         String[] co = new String[3];
-        int idxG = 0;
         for (var l : lines) {
 
             co[idx % 3] = l;
@@ -49,7 +40,6 @@ public class Day03 {
             if (idx % 3 == 0) {
                 int point2 = findCommonElementsGroup(co);
                 sum2 += point2;
-                idxG++;
             }
 
         }

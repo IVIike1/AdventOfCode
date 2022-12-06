@@ -1,10 +1,7 @@
 package at.gruber.dev.y2022;
 
-import java.io.IOException;
-import java.nio.ByteOrder;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import at.gruber.dev.FileHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -15,13 +12,8 @@ public class Day05 {
 
     public static void main(String[] args) {
 
-        List<String> lines = new ArrayList<>();
-        try {
-            Path path = Paths.get("D:\\Daten\\Dokumente\\IntellijProjects\\AdventOfCode\\src\\main\\resources\\2022\\day05.txt");
-            lines = Files.readAllLines(path);
-        } catch (IOException e) {
-            System.err.println(e.getLocalizedMessage());
-        }
+        List<String> lines = FileHelper.getFileContent(5);
+
 
         fillCrates(crates);
         printCrates();
@@ -105,7 +97,7 @@ public class Day05 {
             sb.append("\n");
         }
         int idx = 1;
-        for (var s : crates) {
+        for (var ignored : crates) {
             sb.append(" ").append(idx).append("  ");
             idx++;
         }

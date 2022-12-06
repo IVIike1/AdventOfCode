@@ -1,23 +1,14 @@
 package at.gruber.dev.y2015;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import at.gruber.dev.FileHelper;
+
 import java.util.List;
 
 public class Day01 {
 
     public static void main(String[] args) {
-        List<String> lines = new ArrayList<>();
-        try {
-            Path path = Paths.get("D:\\Daten\\Dokumente\\gru\\AdventOfCode\\2015\\day01.txt");
+        List<String> lines = FileHelper.getFileContent(1, 2015);
 
-            lines = Files.readAllLines(path);
-        } catch (IOException e) {
-            System.err.println(e.getLocalizedMessage());
-        }
         int floor = 0;
 
         for (var l : lines) {

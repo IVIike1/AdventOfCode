@@ -1,10 +1,7 @@
 package at.gruber.dev.y2022;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import at.gruber.dev.FileHelper;
+
 import java.util.List;
 
 public class Day02 {
@@ -22,13 +19,7 @@ public class Day02 {
     public Day02() {
 
 
-        List<String> lines = new ArrayList<>();
-        try {
-            Path path = Paths.get("D:\\Daten\\Dokumente\\gru\\AdventOfCode\\2022\\day02.txt.txt");
-            lines = Files.readAllLines(path);
-        } catch (IOException e) {
-            System.err.println(e.getLocalizedMessage());
-        }
+        List<String> lines = FileHelper.getFileContent(2);
 
         int points = 0;
         int points2 = 0;
@@ -104,24 +95,24 @@ public class Day02 {
         Code you = Code.valueOf(y);
         //   System.out.println("Opponent choose: " + opponent.name + ", you choose: " + you.name);
 
-        if (opponent.point == you.point) {
+        if (opponent.getPoint() == you.getPoint()) {
             //System.err.println("Draw -> " + (pointDraw + you.point) + " points");
             anzDraw++;
-            return pointDraw + you.point;
+            return pointDraw + you.getPoint();
         } else if ((opponent == Code.B && you == Code.X)
                 || (opponent == Code.A && you == Code.Z)
                 || (opponent == Code.C && you == Code.Y)
         ) {
             //System.err.println("You lose -> " + (pointLoss + you.point) + " points");
             anzLose++;
-            return pointLoss + you.point;
+            return pointLoss + you.getPoint();
         } else if ((opponent == Code.A && you == Code.Y)
                 || (opponent == Code.B && you == Code.Z)
                 || (opponent == Code.C && you == Code.X)
         ) {
             //System.err.println("You win -> " + (pointWin + you.point) + " points");
             anzWin++;
-            return pointWin + you.point;
+            return pointWin + you.getPoint();
         }
 
         return -1; // nix
@@ -135,8 +126,8 @@ public class Day02 {
         C("Scissor", 3), // E
         Z("Scissor", 3);
 
-        private String name;
-        private int point;
+        private final String name;
+        private final int point;
 
         Code(String n, int p) {
             name = n;
@@ -147,16 +138,9 @@ public class Day02 {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
         public int getPoint() {
             return point;
         }
 
-        public void setPoint(int point) {
-            this.point = point;
-        }
     }
 }

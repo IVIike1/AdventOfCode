@@ -1,13 +1,9 @@
 package at.gruber.dev.y2015;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.NoSuchAlgorithmException;
-import java.util.*;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 public class Day04 {
     public static void main(String[] args) throws NoSuchAlgorithmException {
@@ -18,7 +14,7 @@ public class Day04 {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
         int i = 0;
-        int found = 0;
+        int found ;
         while (true) {
 
             md.update((secret + i).getBytes(StandardCharsets.UTF_8));
@@ -39,7 +35,7 @@ public class Day04 {
 
         System.out.println("#### Part Two:");
         i = 0;
-        int found2 = 0;
+        int found2 ;
         while (true) {
 
             md.update((secret + i).getBytes(StandardCharsets.UTF_8));
