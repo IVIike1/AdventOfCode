@@ -9,7 +9,7 @@ import java.util.Locale;
 public class Day06 {
     public static void main(String[] args) {
 
-        List<String> lines = FileHelper.getFileContent(6);
+        List<String> lines = new FileHelper().getFileContent(6);
 
         System.out.println("#### Part One:");
         int pos = 0;

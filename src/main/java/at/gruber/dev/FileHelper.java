@@ -1,28 +1,65 @@
 package at.gruber.dev;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileHelper {
-    public static List<String> getFileContent(int day) {
-        return getFileContent(day, 2022);
+    public List<String> getFileContent(int day) {
+        return getFileContent(day, 2022, null);
     }
 
-    public static List<String> getFileContent(int day, int year) {
+    public List<String> getFileContent(String dayYear) {
+        return getFileContent(0, 0, dayYear);
+    }
+
+    public List<String> getFileContent(int day, int year) {
+        return getFileContent(day, year, null);
+    }
+
+    public List<String> getFileContent(int day, int year, String n) {
 
         List<String> lines = new ArrayList<>();
         try {
-            Path path = Paths.get("D:\\Daten\\Dokumente\\IntellijProjects\\AdventOfCode\\src\\main\\resources\\" + year + "\\day" + padLeft(day) + ".txt");
-            lines = Files.readAllLines(path);
+            String fileName = null;
+            if (n != null && n.length() > 1) {
+                fileName = n + ".txt";
+            } else if (day > 0 && year > 0) {
+                fileName = year + "/day" + padLeft(day) + ".txt";
+            }
+
+            if (fileName == null) {
+                System.out.println("File '" + day + year + n + "' not found!");
+            }
+
+            InputStream is = getFileAsIOStream(fileName);
+
+            try (InputStreamReader isr = new InputStreamReader(is);
+                 BufferedReader br = new BufferedReader(isr)) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    lines.add(line);
+                }
+                is.close();
+            }
+            //lines = Files.readAllLines(Paths.get(FileHelper.class.getClass().getResource(fileName).toURI()));
         } catch (IOException e) {
             System.err.println(e.getLocalizedMessage());
         }
 
         return lines;
+    }
+
+    private InputStream getFileAsIOStream(final String fileName) {
+        InputStream ioStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
+
+        if (ioStream == null) {
+            throw new IllegalArgumentException(fileName + " is not found");
+        }
+        return ioStream;
     }
 
     private static String padLeft(int input) {

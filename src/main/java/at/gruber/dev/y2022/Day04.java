@@ -7,7 +7,7 @@ import java.util.*;
 public class Day04 {
     public static void main(String[] args) {
 
-        List<String> lines = FileHelper.getFileContent(4);
+        List<String> lines = new FileHelper().getFileContent(4);
 
 
         System.out.println("#### Part One:");

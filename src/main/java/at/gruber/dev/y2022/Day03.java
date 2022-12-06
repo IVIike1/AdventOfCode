@@ -8,7 +8,7 @@ import java.util.Locale;
 public class Day03 {
     public static void main(String[] args) {
 
-        List<String> lines = FileHelper.getFileContent(3);
+        List<String> lines = new FileHelper().getFileContent(3);
 
         System.out.println("#### Part One:");
         int sum = 0;

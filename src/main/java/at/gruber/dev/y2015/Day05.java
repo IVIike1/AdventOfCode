@@ -11,7 +11,7 @@ public class Day05 {
 
     public static void main(String[] args) {
 
-        List<String> lines = FileHelper.getFileContent(5, 2015);
+        List<String> lines = new FileHelper().getFileContent(5, 2015);
 
 
         System.out.println("#### Part One:");

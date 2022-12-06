@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Day01 {
     public static void main(String[] args) {
-        List<String> lines = FileHelper.getFileContent(1);
+        List<String> lines = new FileHelper().getFileContent(1);
 
         List<ElfCalories> elves = new ArrayList<>();
 

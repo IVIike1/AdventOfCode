@@ -5,21 +5,21 @@ import at.gruber.dev.FileHelper;
 import java.util.List;
 
 public class Day02 {
-    int pointWin = 6;
-    int pointDraw = 3;
-    int pointLoss = 0;
+    private static final int pointWin = 6;
+    private static final int pointDraw = 3;
+    private static final int pointLoss = 0;
 
-    int anzWin = 0;
-    int anzLose = 0;
-    int anzDraw = 0;
-    int anzWin2 = 0;
-    int anzLose2 = 0;
-    int anzDraw2 = 0;
+    private static int anzWin = 0;
+    private static int anzLose = 0;
+    private static int anzDraw = 0;
+    private static int anzWin2 = 0;
+    private static int anzLose2 = 0;
+    private static int anzDraw2 = 0;
 
-    public Day02() {
+    public static void main(String[] args) {
 
 
-        List<String> lines = FileHelper.getFileContent(2);
+        List<String> lines = new FileHelper().getFileContent(2);
 
         int points = 0;
         int points2 = 0;
@@ -41,7 +41,7 @@ public class Day02 {
 
     }
 
-    private int checkWin2(String o, String y) {
+    private static int checkWin2(String o, String y) {
         Code opponent = Code.valueOf(o);
         Code toDo = Code.valueOf(y);
 
@@ -90,7 +90,7 @@ public class Day02 {
         return -1;
     }
 
-    private int checkWin(String o, String y) {
+    private static int checkWin(String o, String y) {
         Code opponent = Code.valueOf(o);
         Code you = Code.valueOf(y);
         //   System.out.println("Opponent choose: " + opponent.name + ", you choose: " + you.name);
